@@ -42,4 +42,23 @@ describe("Thermostat", function() {
     expect(thermostat.reset()).toBe(20)
   });
 
+  it("returns low usage if the temperature is below 18", function() {
+    thermostat.temperature = 17
+    expect(thermostat.energyUsage()).toBe("low-usage")
+  });
+
+  it("returns medium usage if temperature is 18 and higher but lower than 25", function() {
+    thermostat.temperature = 18
+    expect(thermostat.energyUsage()).toBe("medium-usage")
+    thermostat.temperature = 20
+    expect(thermostat.energyUsage()).toBe("medium-usage")
+  });
+
+  it("returns high usage if temperature is 25 or higher", function() {
+    thermostat.temperature = 25
+    expect(thermostat.energyUsage()).toBe("high-usage")
+    thermostat.temperature = 26
+    expect(thermostat.energyUsage()).toBe("high-usage")
+  });
+
 });
