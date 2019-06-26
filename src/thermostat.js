@@ -21,3 +21,7 @@ Thermostat.prototype.maximumTemp = function() {
     return 32;
   }
 }
+
+Thermostat.prototype.reset = function() {
+  return this.temperature = 20;
+}

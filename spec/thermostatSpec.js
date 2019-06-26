@@ -36,5 +36,10 @@ describe("Thermostat", function() {
     expect(thermostat.powersaver).toBe(true);
   })
 
+  it("has a reset function which sets the temperature at 20", function() {
+    thermostat.up()
+    thermostat.up()
+    expect(thermostat.reset()).toBe(20)
+  });
 
 });
