@@ -22,6 +22,11 @@ describe("Thermostat", function() {
     expect(thermostat.minimumTemp).toBe(10);
   });
 
+  it("cannot be reduced to a temperature lower than the minimum", function() {
+    thermostat.temperature = 10
+    expect(thermostat.down()).toBe(10);
+  })
+
   it("has a max temperature of 25 when on powersaver mode", function() {
     thermostat.powersaver = true
     expect(thermostat.maximumTemp()).toBe(25);
@@ -31,6 +36,17 @@ describe("Thermostat", function() {
     thermostat.powersaver = false
     expect(thermostat.maximumTemp()).toBe(32);
   });
+
+  it("cannot be increased to a temperature higher than the maximum temperature", function() {
+    thermostat.powersaver = true
+    thermostat.temperature = 25
+    expect(thermostat.up()).toBe(25)
+    thermostat.powersaver = false
+    thermostat.temperature = 25
+    expect(thermostat.up()).toBe(26)
+    thermostat.temperature = 32
+    expect(thermostat.up()).toBe(32)
+  })
 
   it("has a default powersaver value of true", function() {
     expect(thermostat.powersaver).toBe(true);

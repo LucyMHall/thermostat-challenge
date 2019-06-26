@@ -5,12 +5,16 @@ function Thermostat() {
 }
 
 Thermostat.prototype.up = function() {
-  this.temperature ++;
+  if (this.temperature < this.maximumTemp()){
+      this.temperature ++;
+  }
   return this.temperature;
 }
 
 Thermostat.prototype.down = function() {
-  this.temperature --;
+  if (this.temperature > 10) {
+    this.temperature --;
+  }
   return this.temperature;
 }
 
